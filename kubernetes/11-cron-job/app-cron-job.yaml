@@ -4,7 +4,7 @@ metadata:
   name: app-cron-job
   namespace: pedro-dias
 spec:
-  schedule: "*/2 21 * * *"  # Executa todos os dias às 21h UTC
+  schedule: "*/2 18 * * *"  # Executa todos os dias às 21h UTC
   jobTemplate:
     spec:
       template:

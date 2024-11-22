@@ -17,5 +17,12 @@ kubectl get ingress -n pedro-dias
 
 ```bash
 kubectl port-forward svc/ingress-nginx-controller 8080:80 -n ingress-nginx
-curl -v -H "Host: meu-nginx.com" http://localhost:8080
+curl -v -H "Host: me33u-nginx.com" http://localhost:8080
 ```
+
+
+/portal/
+
+/buider/portal
+
+/buider/portal -> /portal/

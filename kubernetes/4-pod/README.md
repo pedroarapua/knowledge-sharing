@@ -10,6 +10,6 @@ kubectl get pods -n pedro-dias
 - Test Http Request
 
 ```bash
-kubectl port-forward pod/nginx-pod 8080:80 -n pedro-dias
+kubectl port-forward pod/app-pod 8080:80 -n pedro-dias
 curl -v http://localhost:8080/
 ```

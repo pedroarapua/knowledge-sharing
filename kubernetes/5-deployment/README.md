@@ -2,7 +2,7 @@ Definição: O Deployment gerencia a criação e atualização de Pods. Ele gara
 
 - Delete Current Pod
 ```bash
-kubectl delete -f ./4-pod/pod.yaml
+kubectl delete -f ./4-pod/app-pod.yaml
 kubectl get pods -n pedro-dias
 ```
 
@@ -16,7 +16,7 @@ kubectl get pods -n pedro-dias
 - Edit replica count 1 -> 2 using kubectl edit command
 
 ```bash
-kubectl edit deployment app -n pedro-dias
+kubectl edit deployment app-deployment -n pedro-dias
 ```
 
 - Edit replica count 1 -> 2 using deployment.yaml
@@ -47,5 +47,5 @@ kubectl logs -f --tail 100 -l app=nginx -n pedro-dias
 
 ```bash
 kubectl get pods -n pedro-dias
-kubectl exec -it {pod_name} -n pedro-dias -- printenv | grep MY_ANOTHER_ENV_VAR
+kubectl exec -it {pod_name} -n pedro-dias -- printenv | grep MY_ENV_VAR
 ```
