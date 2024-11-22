@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: app-cron-job
+  namespace: pedro-dias
+spec:
+  schedule: "*/2 21 * * *"  # Executa todos os dias às 21h UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: app-echo
+            image: busybox:1.32
+            command: ["/bin/sh", "-c", "echo 'Job executado com sucesso'; sleep 30"]
+          restartPolicy: OnFailure
+  successfulJobsHistoryLimit: 3  # Limite de 3 jobs concluídos com sucesso para manter
+  failedJobsHistoryLimit: 1      # Limite de 1 job falho para manter

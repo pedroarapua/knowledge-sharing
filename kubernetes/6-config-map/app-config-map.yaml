@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-map
+  namespace: pedro-dias
+data:
+  MY_ANOTHER_ENV_VAR: "valor_da_variavel"

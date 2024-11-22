@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app-job
+  namespace: pedro-dias
+spec:
+  completions: 1       # Quantidade de execuções que o Job deve completar
+  parallelism: 1       # Número de pods em execução simultaneamente
+  backoffLimit: 4      # Limite de tentativas em caso de falha
+  template:
+    metadata:
+      labels:
+        app: app-echo
+    spec:
+      containers:
+      - name: app-echo
+        image: busybox:1.32
+        command: ["/bin/sh", "-c", "echo 'Job executado com sucesso'; sleep 30"]
+      restartPolicy: Never   # Não reiniciar o pod após a execução

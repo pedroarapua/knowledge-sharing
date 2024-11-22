@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  namespace: pedro-dias
+spec:
+  selector:
+    app: nginx          # seletor para identificar os pods que deveriam receber o tráfego
+  ports:
+    - protocol: TCP
+      port: 80          # porta exposta do serviço
+      targetPort: 80    # porta destino no pod
+  type: ClusterIP       # service typ

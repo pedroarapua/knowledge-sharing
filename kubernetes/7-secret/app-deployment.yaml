@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: pedro-dias
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10 # Tempo antes de iniciar a verificação
+          periodSeconds: 5 # Frequência das verificações
+          failureThreshold: 3 # Número de falhas consecutivas antes de reiniciar o contêiner
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5 # Tempo antes de começar a verificar
+          periodSeconds: 5 # Frequência das verificações
+          failureThreshold: 3 # Número de falhas consecutivas antes de remover o contêiner do load balance
+        env:
+        - name: MY_ENV_VAR
+          value: "valor_da_variavel"
+        - name: MY_ANOTHER_ENV_VAR
+          valueFrom:
+            configMapKeyRef:
+              name: app-config-map  # Nome do ConfigMap
+              key: MY_ANOTHER_ENV_VAR        # Chave do ConfigMap que define o valor
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret      # Nome do Secret
+              key: PASSWORD         # Chave do Secret que define o valor
