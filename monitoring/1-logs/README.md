@@ -1,0 +1,1 @@
+Logs fornecem detalhes específicos de eventos e falhas, úteis para análise detalhada.

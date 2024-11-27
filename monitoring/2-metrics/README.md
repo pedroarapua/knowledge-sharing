@@ -1,0 +1,1 @@
+Métricas fornecem informações quantitativas e ajudam a monitorar a saúde geral da aplicação.
