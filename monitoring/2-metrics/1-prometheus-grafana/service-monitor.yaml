@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: app-web-monitor
+  namespace: pedro-dias
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: app-web
+  endpoints:
+    - port: http
+      path: /metrics  # O caminho correto para expor métricas da sua aplicação
+      interval: 10s

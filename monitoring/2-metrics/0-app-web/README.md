@@ -1,2 +1,11 @@
-docker build -t pedroarapua/app-web .
-docker run -d -p 3000:3000 pedroarapua/app-web
+- Construindo a imagem
+
+```bash
+docker build -t pedroarapua/app-web-metrics .
+```
+
+- Enviando a imagem para o docker registy dockerhub (OPCIONAL)
+
+```bash
+docker push pedroarapua/app-web-metrics
+```

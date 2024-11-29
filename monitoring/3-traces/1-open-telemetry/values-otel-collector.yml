@@ -1,0 +1,33 @@
+mode: "deployment"
+
+image:
+  repository: "otel/opentelemetry-collector"
+  tag: "latest"
+
+extraEnvs:
+  - name: OTEL_LOG_LEVEL
+    value: "debug"
+
+config:
+  receivers:
+    otlp:
+      protocols:
+        http:
+          endpoint: "0.0.0.0:4318"  # Alterado para usar HTTP, na mesma porta que sua aplicação
+
+  exporters:
+    otlphttp:
+      endpoint: "http://localhost.svc.cluster.local:8200"  # O endpoint para enviar OTLP HTTP
+      # headers:
+      #   "Authorization": "Basic ZWxhc3RpYzplbGFzdGlj"  # encoded username:password elasticsearch (eg: elastic:elastic)
+
+  service:
+    pipelines:
+      traces:
+        receivers: 
+          - otlp
+        exporters:
+          - otlphttp
+    # telemetry:
+    #   logs:
+    #     level: debug  # Habilita log de debug

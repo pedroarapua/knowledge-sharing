@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: app-web
-        image: pedroarapua/app-web-metrics:latest
+        image: pedroarapua/app-web-traces:latest
         ports:
         - containerPort: 3000
         livenessProbe:
@@ -32,3 +32,8 @@ spec:
           initialDelaySeconds: 5 # Tempo antes de começar a verificar
           periodSeconds: 5 # Frequência das verificações
           failureThreshold: 3 # Número de falhas consecutivas antes de remover o contêiner do load balance
+        env:
+          - name: OTEL_LOG_LEVEL
+            value: "info"
+          - name: OTEL_URL
+            value: "http://opentelemetry-collector.monitoring:4318/v1/traces"
